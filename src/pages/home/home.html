@@ -1,14 +1,74 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      <img src="../../assets/imgs/logo.png" style="margin: 5px;">
+      <button (click) = "goSignIn()" class="btn home-singin" float-right>Sign In</button>
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v3">docs</a> will be your guide.
-  </p>
+  <ion-grid class="features-list">
+    <ion-row>
+      <ion-col>
+        <h4>Simplify Property Maitenance Compliants</h4>
+      <p>
+        Helps you and your tenants resolve maintenance issues faster. Notify immediately, manage issues at one place, automate
+        the process easily.
+      </p>
+      <div> 
+        <button class="btn home-singin" (click) = "goSignUp()">Sign Up Now</button>
+      </div>
+      </ion-col>
+      <ion-col>
+        <img src="../../assets/imgs/complaints.png" alt="simplify tenant complaints" aria-label="simplify teantn complaints" float-right>
+      </ion-col>
+    </ion-row> 
+    <ion-row>
+      <ion-col>
+        <img src="../../assets/imgs/qrcode-scan.png" alt="Tenant Submit Compliant Ticket" aria-label="Tenant Submit Compliant Ticket" float-left>
+      </ion-col>
+      <ion-col>
+          <h4>Tenant Submit Compliant Ticket</h4>
+          <p>
+            Teant submit their suite or any common utilities complaints with just scanning a QR Code.
+          </p>
+      </ion-col>
+    </ion-row>  
+    <ion-row>
+      <ion-col>
+        <h4>Notify Maintenance</h4>
+          <p>
+            System will immediately notifies the mainenance team when tenants submit a complaint.
+          </p>
+      </ion-col>
+      <ion-col>
+        <img src="../../assets/imgs/notify.png" alt="Notify Maintenance" aria-label="Notify Maintenance" float-right>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <img src="../../assets/imgs/resolve_complaint.png" alt="Resolve Compliant" aria-label="Resolve Compliant"float-left>
+      </ion-col>
+      <ion-col>
+        <h4>Resolve Compliant</h4>
+        <p>
+          Assign a team member to fix the tenant complaint and once resolve the complaint team can change status.
+        </p>
+      </ion-col>
+    </ion-row>    
+    <ion-row>
+      <ion-col>
+        <h4>Notify Tenant</h4>
+        <p>
+          Maintenance team can send the status to tenant who requested the complaint.
+        </p>
+      </ion-col>
+      <ion-col>
+        <img src="../../assets/imgs/tenant-notify.png" alt="Notify Tenant" aria-label="Notify Tenant" float-right>
+      </ion-col>
+    </ion-row> 
+    </ion-grid>
+  <ion-row>
+  </ion-row>
 </ion-content>

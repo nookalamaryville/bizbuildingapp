@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar hideBackButton>
+    <ion-title> <img src="../../assets/imgs/logo.png" style="margin: 5px;"></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="signupForm">
+    <h2>Get your free account!</h2>
+<ion-list>
+  <ion-item>
+    <ion-label floating>Property Name</ion-label>
+    <ion-input type="text" [formControl]="signupForm.controls['PropertyName']"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Email Address</ion-label>
+    <ion-input type="text" [formControl]="signupForm.controls['EmailAddress']"></ion-input>
+  </ion-item>
+  <div *ngIf="!signupForm.controls.EmailAddress.valid &&
+        (signupForm.controls.EmailAddress.dirty || submitted)" class="validator-error">
+      Please enter a valid email.
+    </div>
+  <ion-item>
+    <ion-label floating>Password</ion-label>
+    <ion-input  type="Password" [formControl]="signupForm.controls['Password']"></ion-input>
+  </ion-item>
+  <div *ngIf="signupForm.controls.Password.hasError('pattern') &&
+        (signupForm.controls.Password.dirty || submitted)"
+        class="validator-error">
+      Passwords should be at least 8 characters long and contain one number, one character and one special character.
+    </div>
+    <ion-row>
+      <ion-col text-center> 
+        <button class="btncancel" (click) = "goHome()" >Cancel</button>
+  <button [disabled]="!signupForm.valid" (click) = "goRegister()" class="btn">Create Account</button>  
+</ion-col>
+</ion-row>
+</ion-list>    
+</form>
+</ion-content>

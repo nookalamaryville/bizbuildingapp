@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <img src="../../assets/imgs/logo.png" style="margin: 5px;">
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h1>Tenant Comaplaints</h1>
+  <h3 class="no-item" text-center *ngIf="items.length === 0">No items available on the list!</h3>
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of items; let i = index">
+      <ion-item>
+        <ion-row>
+          <ion-col><h2>Location: </h2> {{item.Location}}</ion-col><ion-col><h2>Description: </h2>{{item.Description}}</ion-col>
+        </ion-row>  
+      </ion-item>
+      <ion-item>
+      <ion-row>
+          <ion-col><h2>Status: </h2> {{item.Status}}</ion-col><ion-col><h2>Requested Date:</h2> {{item.RequestedDate}}</ion-col><ion-col><h2>Resolved Date:</h2>{{item.ResolveDate}}</ion-col>
+        </ion-row>        
+      </ion-item>
+      <ion-item-options>
+        <button (click) = "editModalItem(item)" ion-button color="secondary" icon-start style="height: 75px;;">
+          <ion-icon name="create"></ion-icon>
+          Status Update
+        </button>
+        <button (click) = "removeItem(item)"  ion-button color="danger" icon-start style="height: 75px;;">
+          <ion-icon name="trash"></ion-icon>
+          Remove
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

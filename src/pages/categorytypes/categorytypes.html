@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <img src="../../assets/imgs/logo.png" style="margin: 5px;">
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h1>Categories</h1>
+  <h3 class="no-item" text-center *ngIf="items.length === 0">No items available on the list!</h3>
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of items; let i = index">
+      <ion-item>
+        <h2>Name: </h2> {{item.Name}} 
+      </ion-item>
+      <ion-item>
+          <h2>Description: </h2> {{item.Description}}        
+      </ion-item>
+      <ion-item-options>
+        <button (click) = "editCategory(item)" ion-button color="secondary" icon-start style="height: 75px;;">
+          <ion-icon name="create"></ion-icon>
+          Edit
+        </button>
+        <button (click) = "removeCategory(item)"  ion-button color="danger" icon-start style="height: 75px;;">
+          <ion-icon name="trash"></ion-icon>
+          Remove
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-fab bottom right>
+    <button ion-fab mini (click)="addCategory()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+</ion-content>

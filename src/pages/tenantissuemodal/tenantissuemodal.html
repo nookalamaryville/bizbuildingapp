@@ -1,0 +1,45 @@
+<!--
+  Generated template for the TenantissuemodalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content padding>
+  <h3>Change Status</h3>
+  <br><br>
+  <form>
+    <ion-list>
+        <ion-item>
+          <ion-label>Log Id: {{item.LogId}}</ion-label>
+          <ion-label>Category: {{item.CategoryName}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Location: {{item.Location}}</ion-label>
+          <ion-label>Geo Location: {{item.GeoLocation}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Desrciption: {{item.Description}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Assigned To:</ion-label>
+          <ion-select  [(ngModel)] = "item.AssignedTo" name="assignedto" interface="popover">
+            <ion-option *ngFor="let staff of StaffList" value="{{staff.UserId}}">{{staff.FullName}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Status:</ion-label>
+          <ion-select  [(ngModel)] = "item.Status" name="status" interface="popover">
+            <ion-option *ngFor="let status of StatusList" value="{{status}}">{{status}}</ion-option>
+          </ion-select>
+        </ion-item>
+    </ion-list>
+    <br><br>
+    <ion-buttons>
+      <div class="row">
+        <div class="col text-right">
+      <button ion-button (click)="cancelModal()" item-end>Cancel</button>
+      <button ion-button (click)="submitData()"  item-end>Submit</button>
+        </div></div>
+    </ion-buttons>    
+  </form>
+  </ion-content>

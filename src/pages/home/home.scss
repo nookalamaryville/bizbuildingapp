@@ -1,3 +1,9 @@
 page-home {
-
+    .features-list .row {
+    border-bottom: 2px solid color($colors, button-red-color);
+    padding: 10px;
+}
+.features-list .row:last-child {
+    border-bottom: none;
+}
 }

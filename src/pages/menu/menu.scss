@@ -1,0 +1,29 @@
+page-menu {
+    .menu-inner > ion-header{
+        background: color($colors, button-red-color)!important;
+    }
+    // .scroll-content .list .item-md{
+    //     background: color($colors, button-red-color);
+    //     color: #FFF;
+    //     border-bottom: 1px solid rgba(225, 225, 225, 0.05);
+    // }
+    // .menu-inner .scroll-content{
+    //     background: color($colors, button-red-color);
+    // }
+    .list .list-md .item-inner {
+        border-bottom: none;
+        padding-left: 2px;
+    }
+    .item-md ion-icon[item-start] + .item-inner
+    {
+        margin-left: 0px;
+    }
+    .list-md .item-block .item-inner {
+         border-bottom: none;
+         margin-top: 5px;
+         font-size: 18px;
+    }
+    page-menu .item-md:hover {
+        background: #f6eff1;
+      }
+}

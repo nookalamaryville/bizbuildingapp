@@ -1,0 +1,42 @@
+<!--
+  Generated template for the RegistrationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar hideBackButton>
+    <ion-title> <img src="../../assets/imgs/logo.png" style="margin: 5px;"></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="signinForm">
+    <h2>Sign In to Access Dashboard</h2>
+<ion-list>
+  <ion-item>
+    <ion-label floating>Email Address</ion-label>
+    <ion-input type="text" [formControl]="signinForm.controls['EmailAddress']"></ion-input>
+  </ion-item>
+  <div *ngIf="!signinForm.controls.EmailAddress.valid &&
+        (signinForm.controls.EmailAddress.dirty || submitted)" class="validator-error">
+      Please enter a valid email.
+    </div>
+  <ion-item>
+    <ion-label floating>Password</ion-label>
+    <ion-input  type="Password" [formControl]="signinForm.controls['Password']"></ion-input>
+  </ion-item>
+  <div *ngIf="signinForm.controls.Password.hasError('pattern') &&
+        (signinForm.controls.Password.dirty || submitted)"
+        class="validator-error">
+      Passwords should be at least 8 characters long and contain one number, one character and one special character.
+    </div>
+    <ion-row>
+      <ion-col text-center>           
+        <button class="btncancel" (click) = "goHome()" >Cancel</button>
+        <button [disabled]="!signinForm.valid" class="btn home-singin" (click) = "SignInDashboard()">Sign In</button>
+      </ion-col>
+    </ion-row>
+</ion-list>    
+</form>
+</ion-content>
