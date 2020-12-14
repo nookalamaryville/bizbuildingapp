@@ -22,8 +22,8 @@ export class StaffmodalPage {
   title='';
   errorMessage = '';
   disabled:boolean=false;
-  item = {UserId:0, PropertyId:0, FirstName:'', LastName:'',FUllName:'', EmailAddress:'', Password:'',PhoneNumber:'', UserType:''};
-  UserTypes = ["Landlord","Manager", "Staff"];
+  item = {UserId:0, PropertyId:0, FirstName:'', LastName:'',FullName:'', EmailAddress:'', Password:'',PhoneNumber:'', UserType:''};
+  UserTypes = ["Manager", "Staff"];
   staffForm:FormGroup;
   constructor(public navCtrl: NavController, public formBuilder: FormBuilder,  public dataService:StaffServiceProvider, public navParams: NavParams, public view: ViewController, public authProvider: AuthProvider, public encryptService: EncryptDecrypt) {
     this.staffForm = this.formBuilder.group({
@@ -31,6 +31,7 @@ export class StaffmodalPage {
       PropertyId:[this.item.PropertyId],
       FirstName:[this.item.FirstName, Validators.required],
       LastName:[this.item.LastName],
+      FullName:[''],
       EmailAddress:[this.item.EmailAddress, Validators.compose([Validators.pattern(regexValidators.email), Validators.required])],
       PhoneNumber:[this.item.PhoneNumber],
       UserType:[this.item.UserType, Validators.required],
@@ -43,21 +44,23 @@ export class StaffmodalPage {
   cancelStaff(){
     this.view.dismiss();
   }
-  submitStaff(){
-    console.log(this.item);
-    //this.view.dismiss(this.item);
+  submitStaff() {
+    this.view.dismiss(this.staffForm.value);
   }
   ionViewWillLoad() {
     this.item = this.navParams.get("data");
     this.item.PropertyId = this.authProvider.currentUser.PropertyId;
     if(this.item.UserType == "Landlord"){
-      this.disabled =true;
+      this.disabled = true;
+      this.UserTypes.push("Landlord")
     }
     if(this.item.UserId > 0) {
     this.dataService.getStaff(this.item.UserId)
-      .subscribe(staff => this.item.Password = this.encryptService.DESDecrypt(staff.Password), error => this.errorMessage = <any>error);
+      .subscribe(staff =>{ 
+        this.item.Password = this.encryptService.DESDecrypt(staff.Password) ;
+        this.staffForm.setValue(this.item);
+      }, error => this.errorMessage = <any>error);
     }
     this.title = this.item.UserId===0?"Add Staff": "Edit Staff";
   }
-
 }

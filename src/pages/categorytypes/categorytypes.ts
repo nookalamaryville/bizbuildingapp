@@ -33,8 +33,7 @@ export class CategorytypesPage {
   }
   loadCategories(){
     this.dataService.getCategories()
-      .subscribe(items => this.items = items, error => this.errorMessage = <any>error);
-      console.log( this.items);
+      .subscribe(items => this.items = items, error => {this.errorMessage = <any>error; this.items=[]});
   }
   addCategory(){
     this.inputDialogService.showCategoryPrompt(this.item);

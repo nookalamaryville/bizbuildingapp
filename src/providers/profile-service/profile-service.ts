@@ -1,48 +1,33 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 import { map, catchError } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 import { AuthProvider } from '../bizbuilding-service/auth';
-import { AlertsProvider } from '../alerts/alerts';
 
 /*
-  Generated class for the StaffServiceProvider provider.
+  Generated class for the ProfileServiceProvider provider.
 
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
 @Injectable()
-export class StaffServiceProvider {
-  items:any = [];
-  dataChanged$:  Observable<boolean>;
-  private dataChangeSubject: Subject<boolean>;
+export class ProfileServiceProvider {
   baseURL = "http://ec2-3-15-22-20.us-east-2.compute.amazonaws.com/api/BizBuilding/";
-  constructor(public http: HttpClient, public authProvideer: AuthProvider, public alertProvider: AlertsProvider) {
+  dataChanged$:  Observable<boolean>;
+  private dataChangeSubject: Subject<boolean>
+  constructor(public http: HttpClient, public authProvideer: AuthProvider) {
     this.dataChangeSubject = new Subject<boolean>();
     this.dataChanged$ = this.dataChangeSubject.asObservable();
   }
-  getStaffList(): Observable<object[]> {
-    return this.http.get(this.baseURL + "GetStaffList/" + this.authProvideer.currentUser.PropertyId).pipe(
+  getPropertyInformation() {
+    return this.http.get(this.baseURL + "GetPropertyInformation/" + this.authProvideer.currentUser.PropertyId).pipe(
       map(this.extractData),
       catchError(this.handleError)
     );
-  }  
-  getStaff(Id) {
-    return this.http.get(this.baseURL + "GetUserInformation/" + Id).pipe(
-      map(this.extractData),
-      catchError(this.handleError)
-    );
-  }  
-  saveStaff(item){
-    this.http.post(this.baseURL + "SaveStaff", item).subscribe(res => {
-      this.dataChangeSubject.next(true);
-    }, execption=>{
-      this.alertProvider.presentAlert(execption.error.Message, " Staff Status");
-    });
   }
-  removeStaff(id){
-    this.http.delete(this.baseURL + "DeleteStaff/" + id).subscribe(res => {
+  saveCategory(item){
+    this.http.post(this.baseURL + "SavePropertyInformation", item).subscribe(res => {
       this.dataChangeSubject.next(true);
     })
   }
@@ -61,5 +46,5 @@ export class StaffServiceProvider {
     }
     console.log(errMsg);
     return Observable.throw(errMsg);
-  }
+  }  
 }

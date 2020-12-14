@@ -37,13 +37,20 @@ export class BizbuildingServiceProvider {
   removeTenantIssue(id){
     this.http.delete(this.baseURL + "DeleteLog/" + id).subscribe(res => {
       this.dataChangeSubject.next(true);
-    })
+    }, execption => {
+      this.dataChangeSubject.next(true);
+    });
   }
   getTenantStaffList(){
     return this.http.get(this.baseURL + "GetStaffList/" +  + this.authProvideer.currentUser.PropertyId).pipe(
       map(this.extractData),
       catchError(this.handleError)
     );
+  }
+  saveComplaint(data){
+    this.http.post(this.baseURL + "SaveCompliant", data).subscribe(res => {
+      this.dataChangeSubject.next(true);
+    }, exception => {console.log(exception.error.Message)})
   }
   private extractData(res: Response) {
     let body = res;

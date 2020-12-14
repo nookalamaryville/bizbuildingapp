@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
+import { Geolocation } from '@ionic-native/geolocation';
 import { MyApp } from './app.component';
 import { BizbuildingServiceProvider } from '../providers/bizbuilding-service/bizbuilding-service';
 import { AuthProvider } from '../providers/bizbuilding-service/auth';
@@ -14,6 +14,7 @@ import { AlertsProvider } from '../providers/alerts/alerts';
 import { InputDialogServiceProvider } from '../providers/input-dialog-service/input-dialog-service';
 import { CategoryServiceProvider } from '../providers/category-service/category-service';
 import { StaffServiceProvider } from '../providers/staff-service/staff-service';
+import { ProfileServiceProvider } from '../providers/profile-service/profile-service';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { StaffServiceProvider } from '../providers/staff-service/staff-service';
   providers: [
     StatusBar,
     SplashScreen,
+    Geolocation,
     EncryptDecrypt,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BizbuildingServiceProvider,
@@ -39,7 +41,8 @@ import { StaffServiceProvider } from '../providers/staff-service/staff-service';
     AlertsProvider,
     InputDialogServiceProvider,
     CategoryServiceProvider,
-    StaffServiceProvider
+    StaffServiceProvider,
+    ProfileServiceProvider
   ]
 })
 export class AppModule {}

@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { map, catchError } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import axios from 'axios';
 import { AuthProvider } from '../bizbuilding-service/auth';
 
 /*
@@ -29,7 +28,6 @@ export class CategoryServiceProvider {
     );
   }  
   saveCategory(item){
-    console.log(item);
     this.http.post(this.baseURL + "SaveCategory", item).subscribe(res => {
       this.items = res;
       this.dataChangeSubject.next(true);
@@ -38,7 +36,7 @@ export class CategoryServiceProvider {
   removeCategory(id){
     this.http.delete(this.baseURL + "DeleteCategory/" + id).subscribe(res => {
       this.dataChangeSubject.next(true);
-    })
+    });
   }
   private extractData(res: Response) {
     let body = res;

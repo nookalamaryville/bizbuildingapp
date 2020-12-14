@@ -4,6 +4,7 @@ import { BizbuildingServiceProvider } from '../../providers/bizbuilding-service/
 import { ToastController } from 'ionic-angular';
 import { TenantissuemodalPage } from '../tenantissuemodal/tenantissuemodal';
 import { InputDialogServiceProvider } from '../../providers/input-dialog-service/input-dialog-service';
+import { ViewController } from 'ionic-angular';
 
 /**
  * Generated class for the DashboardPage page.
@@ -20,7 +21,7 @@ import { InputDialogServiceProvider } from '../../providers/input-dialog-service
 export class DashboardPage {
   items: any = [];
   errorMessage: string;
-  constructor(public navCtrl: NavController, public toastCtrl: ToastController, public navParams: NavParams, public inputDialogService: InputDialogServiceProvider, public dataService: BizbuildingServiceProvider) {
+  constructor(public navCtrl: NavController, public view: ViewController, public toastCtrl: ToastController, public navParams: NavParams, public inputDialogService: InputDialogServiceProvider, public dataService: BizbuildingServiceProvider) {
     dataService.dataChanged$.subscribe((dataCahnged: boolean) => {
       this.loadTenantIssues();
     });
@@ -31,7 +32,7 @@ export class DashboardPage {
   }
   loadTenantIssues(){
     this.dataService.getTenantIssues()
-      .subscribe(items => this.items = items, error => this.errorMessage = <any>error);
+      .subscribe(items => this.items = items, error => {this.errorMessage = <any>error; this.items=[];});
   }
   
   editModalItem(item) {
@@ -49,5 +50,8 @@ export class DashboardPage {
     });
     toast.present();
     this.dataService.removeTenantIssue(item.LogId);
+  }
+  goCompplaint() {
+    this.inputDialogService.showTenantComplaintPrompt();
   }
 }

@@ -30,7 +30,7 @@ export class MenuPage {
         {title:"Dashboard", page:"DashboardPage",icon:"home"},
         {title:"Profile", page:"ProfilePage",icon:"settings"},
         {title:"Staff", page:"StaffPage",icon:"people"},
-        {title:"Categories", page:"CategorytypesPage",icon:"hammer"},
+        {title:"Categories", page:"CategorytypesPage",icon:"hammer"}
       ];
       this.onePage("DashboardPage");
 
@@ -47,6 +47,6 @@ export class MenuPage {
   }
   logout(){
     this.authProvider.logout();
-    this.appCtrl.getRootNavById("HomePage");
-  }
+    this.navCtrl.setRoot("LoginPage");
+  }  
 }

@@ -32,14 +32,12 @@
             <ion-option *ngFor="let status of StatusList" value="{{status}}">{{status}}</ion-option>
           </ion-select>
         </ion-item>
-    </ion-list>
-    <br><br>
-    <ion-buttons>
-      <div class="row">
-        <div class="col text-right">
-      <button ion-button (click)="cancelModal()" item-end>Cancel</button>
-      <button ion-button (click)="submitData()"  item-end>Submit</button>
-        </div></div>
-    </ion-buttons>    
+        <ion-row>
+          <ion-col text-center> 
+            <button (click) = "cancelModal()" class="btncancel">Cancel</button>
+            <button (click) = "submitData()" class="btn">Submit</button>  
+          </ion-col>
+        </ion-row>
+    </ion-list>  
   </form>
   </ion-content>

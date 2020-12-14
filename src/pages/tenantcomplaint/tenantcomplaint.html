@@ -1,0 +1,44 @@
+<!--
+  Generated template for the TenantcomplaintPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content padding>
+  <form [formGroup]="complaintForm">
+    <h2>Tenant Complaint Form</h2>
+    <h3 class="no-item" text-center *ngIf="categoriesList === undefined">No categories available. Please inform your landlord.</h3>
+<ion-list>
+  <ion-item>
+    <ion-label floating>Category:</ion-label>
+    <ion-select  [formControl]="complaintForm.controls['CategoryId']" name="category" interface="popover">
+      <ion-option *ngFor="let category of categoriesList" value="{{category.CategoryId}}">{{category.Name}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <div *ngIf="(complaintForm.controls.CategoryId.dirty || submitted)" class="validator-error">
+      Category is mandatory.
+  </div>
+  <ion-item>
+    <ion-label floating>Location/Suit No:</ion-label>
+    <ion-input  type="text" [formControl]="complaintForm.controls['Location']"></ion-input>
+  </ion-item>
+  <div *ngIf="(complaintForm.controls.Location.dirty || submitted)" class="validator-error">
+    Category is mandatory.
+</div>
+  <ion-item>
+    <ion-label floating>Geo Location:</ion-label>
+    <ion-input type="text"  [readonly]="disabled" [formControl]="complaintForm.controls['GeoLocation']"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Description</ion-label>
+    <ion-textarea type="text" [formControl]="complaintForm.controls['Description']" name="description"></ion-textarea>
+  </ion-item>
+  <ion-row>
+    <ion-col text-center> 
+      <button class="btncancel" (click) = "cancelModal()" >Cancel</button>
+      <button [disabled]="!complaintForm.valid" (click) = "submitComplaint()" class="btn">Save</button>
+    </ion-col>
+  </ion-row>
+</ion-list>    
+</form>
+</ion-content>

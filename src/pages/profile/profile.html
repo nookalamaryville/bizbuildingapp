@@ -10,38 +10,75 @@
 </ion-header>
 
 <ion-content padding>
-  <form [formGroup]="profileForm">
-    <h2>Get your free account!</h2>
-    <ion-list>
-      <ion-item>
-        <ion-label floating>Property Name</ion-label>
-        <ion-input type="text" [formControl]="profileForm.controls['PropertyName']"></ion-input>
-      </ion-item>
-      <div *ngIf="(profileForm.controls.PropertyName.dirty || submitted)" class="validator-error">
-        Property Name is mandatory.
+  <div class="info">
+    <div class="row">
+      <div class="col-2">
+        <div class="form-container">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <h2 class="propheader">Property Details</h2>
+            </ion-col>
+            <ion-col>
+              <button slot="end" class="btn home-singin" (click) = "editProperty()"><ion-icon name="construct"></ion-icon> Edit</button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <h5>Property Name:</h5>
+            </ion-col>
+            <ion-col> {{Info.Name}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <h5>Address:</h5> 
+            </ion-col>
+            <ion-col> {{Info.Address}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <h5>City:</h5>
+            </ion-col>
+            <ion-col> {{Info.City}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <h5>State:</h5> 
+            </ion-col>
+            <ion-col>
+              {{Info.State}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <h5>Zipcode:</h5> 
+            </ion-col>
+            <ion-col>{{Info.Zipcode}}</ion-col>
+          </ion-row>
+        </ion-grid>
       </div>
-      <ion-item>
-        <ion-label floating>Address</ion-label>
-        <ion-input type="text" [formControl]="profileForm.controls['Address']"></ion-input>
-      </ion-item>  
-      <ion-item>
-        <ion-label floating>City</ion-label>
-        <ion-input  type="text" [formControl]="profileForm.controls['City']"></ion-input>
-      </ion-item>  
-      <ion-item>
-        <ion-label floating>State</ion-label>
-        <ion-input  type="text" [formControl]="profileForm.controls['State']"></ion-input>
-      </ion-item> 
-      <ion-item>
-        <ion-label floating>Zipcode</ion-label>
-        <ion-input  type="text" [formControl]="profileForm.controls['Zipcode']"></ion-input>
-      </ion-item> 
-      <ion-row>
-        <ion-col text-center> 
-          <button class="btncancel" (click) = "goHome()" >Cancel</button>
-          <button [disabled]="!profileForm.valid" (click) = "goSubmitProfile()" class="btn">Create Account</button>  
-        </ion-col>
-      </ion-row>
-  </ion-list>    
-</form>
+      </div>
+      <div class="col-2">
+        <div class="form-container">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <h2 class="propheader">Property QR Code</h2>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <img src="https://propertyqrcodes.s3.amazonaws.com/{{propertyId}}.png" width="350">
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              As app is not hosted in any server. Please <button  class="btn" (click) = "goCompplaint()" >Click Here</button> to submit tenant complaint.
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+      </div>
+    </div>
+  </div>
 </ion-content>

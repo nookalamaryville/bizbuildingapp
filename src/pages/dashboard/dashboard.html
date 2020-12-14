@@ -11,7 +11,7 @@
 
 <ion-content padding>
   <h1>Tenant Comaplaints</h1>
-  <h3 class="no-item" text-center *ngIf="items.length === 0">No items available on the list!</h3>
+  <h3 class="no-item" text-center *ngIf="items.length === 0">No comaplaints available on the list!. As application is not hosted any server. Please <button  class="btn" (click) = "goCompplaint()" >Click Here</button> to submit tenant complaint. </h3>
   <ion-list>
     <ion-item-sliding *ngFor="let item of items; let i = index">
       <ion-item>

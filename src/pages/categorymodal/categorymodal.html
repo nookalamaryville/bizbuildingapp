@@ -7,24 +7,25 @@
 <ion-content padding>
   <h3>{{title}}</h3>
   <br><br>
-  <form>
+  <form [formGroup]="categoryForm">
     <ion-list>
         <ion-item>
-          <ion-label>Name:</ion-label>
-          <ion-input type="text" [(ngModel)] = "item.Name" name="name"></ion-input>
+          <ion-label floating>Name:</ion-label>
+          <ion-input type="text" [formControl]="categoryForm.controls['Name']" name="name"></ion-input>
         </ion-item>
+        <div *ngIf="(categoryForm.controls.Name.dirty || submitted)" class="validator-error">
+          Name is mandatory.
+        </div>
         <ion-item>
-          <ion-label>Description:</ion-label>
-          <ion-textarea type="text" [(ngModel)] = "item.Description" name="description"></ion-textarea>
+          <ion-label floating>Description:</ion-label>
+          <ion-textarea type="text" [formControl]="categoryForm.controls['Description']" name="description"></ion-textarea>
         </ion-item>
-    </ion-list>
-    <br><br>
-    <ion-buttons>
-      <div class="row">
-        <div class="col text-right">
-      <button ion-button (click)="cancelCategory()" item-end>Cancel</button>
-      <button ion-button (click)="submitCategory()"  item-end>Submit</button>
-        </div></div>
-    </ion-buttons>    
+        <ion-row>
+          <ion-col text-center> 
+            <button (click) = "cancelCategory()" class="btncancel" >Cancel</button>
+            <button [disabled]="!categoryForm.valid" (click) = "submitCategory()" class="btn">Submit</button>  
+          </ion-col>
+        </ion-row>
+    </ion-list>   
   </form>
   </ion-content>

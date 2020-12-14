@@ -42,9 +42,9 @@ export class TenantissuemodalPage {
     this.view.dismiss(this.item);
   }
   ionViewWillLoad() {
+    this.item = this.navParams.get("data");
     this.dataService.getTenantStaffList()
       .subscribe(items => this.StaffList = items, error => this.errorMessage = <any>error);
-    this.item = this.navParams.get("data");
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad TenantissuemodalPage');
