@@ -48,6 +48,8 @@ export class BizbuildingServiceProvider {
     );
   }
   saveComplaint(data){
+    console.log(data);
+    data.PropertyId = this.authProvideer.currentUser.PropertyId;
     this.http.post(this.baseURL + "SaveCompliant", data).subscribe(res => {
       this.dataChangeSubject.next(true);
     }, exception => {console.log(exception.error.Message)})

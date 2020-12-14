@@ -35,6 +35,7 @@ export class StaffServiceProvider {
     );
   }  
   saveStaff(item){
+    item.PropertyId = this.authProvideer.currentUser.PropertyId;
     this.http.post(this.baseURL + "SaveStaff", item).subscribe(res => {
       this.dataChangeSubject.next(true);
     }, execption=>{
