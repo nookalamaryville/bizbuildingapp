@@ -45,5 +45,6 @@ export class RegistrationPage {
     this.propertySignUp.PropertyUser.Password = this.encryptService.DESEncrypt(this.propertySignUp.PropertyUser.Password);
     this.signupResult = await this.authProvider.registerProperty(this.propertySignUp);
     this.alertsProvider.presentAlert(this.signupResult, "SignUp Status");
+    this.navCtrl.push("HomePage");
   }
 }
